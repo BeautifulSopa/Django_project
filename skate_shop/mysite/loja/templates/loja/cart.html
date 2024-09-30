@@ -1,0 +1,68 @@
+<!-- cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #444;
+        }
+        .empty-cart {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    
+    {% load custom_filters %}  <!-- Load your custom filters here -->
+
+    {% if cart_items %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>${{ item.product.price|floatformat:2|multiply:item.quantity }}</td> <!-- Use the multiply filter here -->
+                <td>
+                    <form action="{% url 'remove_from_cart' item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3" class="text-right"><strong>Grand Total:</strong></td>
+                <td>${{ grand_total|floatformat:2 }}</td> <!-- Use the grand total from the view -->
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty-cart">Your cart is currently empty.</p>
+    {% endif %}
+    
+    <a href="{% url 'lista_produtos' %}" class="btn btn-primary">Continue Shopping</a>
+</body>
+</html>

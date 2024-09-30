@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skateboarding Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #444;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Skateboarding Products</h1>
+
+    <!-- User Account Section -->
+    <div class="user-info">
+        {% if user.is_authenticated %}
+            <span>Welcome, {{ user.username }}!</span>
+            <a href="{% url 'logout' %}" class="btn btn-danger btn-sm">Logout</a>
+            <a href="{% url 'view_cart' %}" class="btn btn-info btn-sm">View Cart</a>
+        {% else %}
+            <a href="{% url 'user_login' %}" class="btn btn-primary btn-sm">Login</a>
+            <a href="{% url 'user_signup' %}" class="btn btn-secondary btn-sm">Sign Up</a> 
+        {% endif %}
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Full Skateboard</td>
+                <td>$200</td>
+                <td><a href="{% url 'add_to_cart' 1 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+            </tr>
+            <tr>
+                <td>Skate Shoes</td>
+                <td>$50</td>
+                <td><a href="{% url 'add_to_cart' 2 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+            </tr>
+            <tr>
+                <td>Helmet</td>
+                <td>$30</td>
+                <td><a href="{% url 'add_to_cart' 3 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+            </tr>
+            <tr>
+                <td>Skate Shape</td>
+                <td>$69.99</td>
+                <td><a href="{% url 'add_to_cart' 4 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+            </tr>
+            <tr>
+                <td>Skate Trucks</td>
+                <td>$35</td>
+                <td><a href="{% url 'add_to_cart' 5 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+            </tr>
+            <tr>
+                <td>Skate Wheels</td>
+                <td>$30</td>
+                <td><a href="{% url 'add_to_cart' 6 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

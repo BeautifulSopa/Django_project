@@ -1,0 +1,35 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Site Title</title>
+    <!-- Add your CSS links here -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Example for CSS -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'lista_produtos' %}">Products</a></li>
+                <div style="float: right;">
+                    {% if user.is_authenticated %}
+                        <span>Welcome, {{ user.username }}!</span>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'user_login' %}">Login</a>
+                        <a href="{% url 'user_signup' %}">Sign Up</a>
+                    {% endif %}
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+</body>
+</html>

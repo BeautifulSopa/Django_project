@@ -1,0 +1,30 @@
+<!-- loja/templates/loja/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.non_field_errors }} <!-- Render non-field errors -->
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                {{ form.password.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="{% url 'user_signup' %}" class="btn btn-secondary">Sign Up</a>  <!-- Link to sign up -->
+        </form>
+    </div>
+</body>
+</html>
