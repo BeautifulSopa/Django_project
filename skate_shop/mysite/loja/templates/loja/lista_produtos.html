@@ -41,7 +41,6 @@
 <body>
     <h1>Skateboarding Products</h1>
 
-    <!-- User Account Section -->
     <div class="user-info">
         {% if user.is_authenticated %}
             <span>Welcome, {{ user.username }}!</span>
@@ -58,39 +57,39 @@
             <tr>
                 <th>Product</th>
                 <th>Price</th>
-                <th>Action</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>Full Skateboard</td>
                 <td>$200</td>
-                <td><a href="{% url 'add_to_cart' 1 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+                <td><a href="{% url 'product_detail' 1 %}" class="btn btn-info">View Details</a></td>
             </tr>
             <tr>
                 <td>Skate Shoes</td>
                 <td>$50</td>
-                <td><a href="{% url 'add_to_cart' 2 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+                <td><a href="{% url 'product_detail' 2 %}" class="btn btn-info">View Details</a></td>
             </tr>
             <tr>
                 <td>Helmet</td>
                 <td>$30</td>
-                <td><a href="{% url 'add_to_cart' 3 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+                <td><a href="{% url 'product_detail' 3 %}" class="btn btn-info">View Details</a></td>
             </tr>
             <tr>
                 <td>Skate Shape</td>
                 <td>$69.99</td>
-                <td><a href="{% url 'add_to_cart' 4 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+                <td><a href="{% url 'product_detail' 4 %}" class="btn btn-info">View Details</a></td>
             </tr>
             <tr>
                 <td>Skate Trucks</td>
                 <td>$35</td>
-                <td><a href="{% url 'add_to_cart' 5 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+                <td><a href="{% url 'product_detail' 5 %}" class="btn btn-info">View Details</a></td>
             </tr>
             <tr>
                 <td>Skate Wheels</td>
                 <td>$30</td>
-                <td><a href="{% url 'add_to_cart' 6 %}" class="btn btn-success btn-sm">Add to Cart</a></td>
+                <td><a href="{% url 'product_detail' 6 %}" class="btn btn-info">View Details</a></td>
             </tr>
         </tbody>
     </table>

@@ -24,7 +24,7 @@
 <body>
     <h1>Your Shopping Cart</h1>
     
-    {% load custom_filters %}  <!-- Load your custom filters here -->
+    {% load custom_filters %}  
 
     {% if cart_items %}
     <table class="table table-striped">
@@ -43,7 +43,7 @@
                 <td>{{ item.product.name }}</td>
                 <td>{{ item.quantity }}</td>
                 <td>${{ item.product.price }}</td>
-                <td>${{ item.product.price|floatformat:2|multiply:item.quantity }}</td> <!-- Use the multiply filter here -->
+                <td>${{ item.product.price|floatformat:2|multiply:item.quantity }}</td> 
                 <td>
                     <form action="{% url 'remove_from_cart' item.id %}" method="POST">
                         {% csrf_token %}
@@ -54,7 +54,7 @@
             {% endfor %}
             <tr>
                 <td colspan="3" class="text-right"><strong>Grand Total:</strong></td>
-                <td>${{ grand_total|floatformat:2 }}</td> <!-- Use the grand total from the view -->
+                <td>${{ grand_total|floatformat:2 }}</td> 
                 <td></td>
             </tr>
         </tbody>

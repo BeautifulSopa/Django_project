@@ -11,7 +11,7 @@
         <h2>Sign Up</h2>
         <form method="post" action="">
             {% csrf_token %}
-            {{ form.non_field_errors }} <!-- Render non-field errors -->
+            {{ form.non_field_errors }} 
             <div class="form-group">
                 {{ form.username.label_tag }}
                 {{ form.username }}

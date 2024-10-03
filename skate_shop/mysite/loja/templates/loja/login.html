@@ -11,7 +11,7 @@
         <h2>Login</h2>
         <form method="post" action="">
             {% csrf_token %}
-            {{ form.non_field_errors }} <!-- Render non-field errors -->
+            {{ form.non_field_errors }} 
             <div class="form-group">
                 {{ form.username.label_tag }}
                 {{ form.username }}
@@ -23,7 +23,7 @@
                 {{ form.password.errors }}
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
-            <a href="{% url 'user_signup' %}" class="btn btn-secondary">Sign Up</a>  <!-- Link to sign up -->
+            <a href="{% url 'user_signup' %}" class="btn btn-secondary">Sign Up</a>  
         </form>
     </div>
 </body>

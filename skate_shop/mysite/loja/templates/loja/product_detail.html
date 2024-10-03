@@ -1,0 +1,85 @@
+<!-- templates/loja/product_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>{{ product.name }}</h1>
+    <p>Price: ${{ product.price }}</p>
+    
+    <!-- Button to open the modal for choosing product options -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chooseOptionsModal">
+        Choose {{ product.name }}
+    </button>
+
+    <!-- Modal for options selection -->
+    <div class="modal fade" id="chooseOptionsModal" tabindex="-1" role="dialog" aria-labelledby="chooseOptionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chooseOptionsModalLabel">Choose Options for {{ product.name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Sample option for demonstration -->
+                    <div class="option-item">
+                        <p>Cagalhão - $20.00</p>
+                        <button class="btn btn-success select-option-btn" data-option-id="1" data-option-name="Cagalhão" data-option-price="20.00">Select</button>
+                    </div>
+                    <hr>
+                    <!-- Add any additional options here -->
+                    <div class="option-item">
+                        <p>Another Option - $15.00</p>
+                        <button class="btn btn-success select-option-btn" data-option-id="2" data-option-name="Another Option" data-option-price="15.00">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form to add product with selected option to cart -->
+    <form action="{% url 'add_to_cart' product.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="selected_option" id="selectedOptionInput">
+        <button type="submit" class="btn btn-success mt-3" id="addToCartBtn" disabled>Add to Cart</button>
+    </form>
+
+    <a href="{% url 'lista_produtos' %}" class="btn btn-secondary mt-3">Back to Products</a>
+</div>
+
+<script>
+    // Script to handle selection of options and store it in hidden input
+    document.querySelectorAll('.select-option-btn').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const selectedOptionId = this.getAttribute('data-option-id');
+            const selectedOptionName = this.getAttribute('data-option-name');
+            const selectedOptionPrice = this.getAttribute('data-option-price');
+
+            // Set the selected option ID in the hidden input
+            document.getElementById('selectedOptionInput').value = selectedOptionId;
+
+            // Enable the Add to Cart button
+            document.getElementById('addToCartBtn').disabled = false;
+
+            // Close the modal after selection
+            $('#chooseOptionsModal').modal('hide');
+
+            // Optional: Display a message with the selected option
+            alert("Selected: " + selectedOptionName + " - $" + selectedOptionPrice);
+        });
+    });
+</script>
+
+</body>
+</html>

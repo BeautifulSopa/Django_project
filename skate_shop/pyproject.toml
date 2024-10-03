@@ -8,17 +8,11 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 Django = "^5.1"
-# Add other dependencies like Pillow for image handling if needed
-Pillow = "^9.2.0"  # If you're handling images in the app (e.g., product images)
-
-# You can add any other Python packages or libraries that your project uses
-# For example, if you need PostgreSQL, include psycopg2:
-# psycopg2-binary = "^2.9.5"
+Pillow = "^9.2.0"
 psycopg2-binary = "^2.9.9"
 django-crispy-forms = "^2.3"
 
 [tool.poetry.dev-dependencies]
-# Development dependencies like testing frameworks
 pytest = "^7.1.2"
 pytest-django = "^4.5.2"
 
@@ -26,10 +20,4 @@ pytest-django = "^4.5.2"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.scripts]
-# Add any CLI commands here, if you have any
-
-[tool.poetry.packages]
-# Define your project packages here
-# Include all the app directories, like 'loja' in your case
-"loja" = {from = "mysite/loja"}
+# No need for [tool.poetry.package] or [tool.poetry.packages]
